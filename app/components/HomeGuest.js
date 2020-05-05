@@ -10,7 +10,7 @@ function HomeGuest() {
   function handleSubmit(e) {
     e.preventDefault();
     try {
-      Axios.post("http://localhost:8080/register", { username, email, password });
+      Axios.post("/register", { username, email, password });
       console.log("success");
     } catch (ex) {
       console.log("Failed", ex);

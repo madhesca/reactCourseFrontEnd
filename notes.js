@@ -99,3 +99,43 @@ done;
 //save and test
 
 //make username dynamic
+done;
+//create CreatePost, github, create post, select form after header.
+// paste with Page comp, title Create New post, classname
+//set up route for for /create-post
+//Link the Create post button
+//save and test
+//focus the input, change ..for, autocomplete...
+//create handleSubmit to form
+//prevent its default
+
+//in Main, after imports , Axios.defaults.baseUrl = 'theurl'
+//update all urls , homeguest, headerloggedout
+// try catch
+// in try, post to db the title, body, and token with hardcoded values
+//token is from localstorage
+//console 'new post created'
+//save and test. check console and mongo db
+
+//in create post, usestate the title, and body
+//add change handler to title and body
+//change the hardcoded value in aczios
+//save and check. check console and mongodb
+done;
+
+//create viewsinglepost, github, sinle-post, above h2 dv below header, below 1 div
+// paste with Page, title, single post
+//classes change
+//create route for /post/:id, save and test
+
+//redirect after posting post in try, give a commecnt
+//import withRouter in rrd
+//change export default, add props
+
+//in try, props history push to /post/id --fake
+//saveand test
+
+//make the id dynamic thru response
+done;
+//Main, above header
+//FlashMessages, import to main and test
