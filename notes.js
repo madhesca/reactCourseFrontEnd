@@ -139,3 +139,51 @@ done;
 done;
 //Main, above header
 //FlashMessages, import to main and test
+done
+
+//new file in app name ExampleContext, import createContext
+//const Ex.. and export . import in Main
+//provide all components, add func addFlas as value
+//down Create post, delete props,
+//in Create, const of addFlashMessage with usecontect
+//change the flash message below
+//save and post test
+
+//make thecreate context an object and add setLogged in and delete in Header below
+//first destructure the addFlash from CreatePOst, save nd test
+
+//back to header file, deelete setLogin below and
+//go to header log in and out and use the use contexx
+//alsose change setlogin in the hadlelogout func
+//save and test
+done
+//import usereducer, in main func, declare useRReducer
+done
+
+
+start here
+//Main,  add prop for initial state name user - obj
+//props, token, username, avatar --get the values
+//in headerloggedout, comment out 3 localSto
+//add prop to app dispatch, wc is the response data, name data
+
+//oruReducer, in login case, add draft.user prop
+//with value of action.data
+
+//before the return statement add useeffect
+// if else. if state.loggedin is true, save to local storage -copy from header
+//change the 2nd ar to state
+//else, paste also, but remove, deleted 2nd arg
+
+//inHeaderllgin, below dipatch, delete local storages
+//import statedispatch and create const appState
+//in img, change src
+//save and test
+
+//in Home, import statecontext and const appSatte
+//change local storage from "Hello"... to appstate
+//save and test
+
+//CreatePost, import State and Dispatch context and andd their cons
+//change the object that sent along.. the token
+//save and test, check mongodb
