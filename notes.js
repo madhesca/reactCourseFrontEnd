@@ -187,3 +187,24 @@ start here
 //CreatePost, import State and Dispatch context and andd their cons
 //change the object that sent along.. the token
 //save and test, check mongodb
+done
+
+//new file in comp name Profile, guthub, profile-posts
+//start at h2 before footer 1 div
+//paste with page title Profile Screen
+//classnames
+//add route for profile /profile/:username
+// set dynamic link to avatar save and test 
+
+//Profile, import useParams rrd
+// destructure username 
+//useeffect, create fetchData func try catch
+//try, save to reponse post req to dynamic url\
+//2nd arg is the token
+//log the response
+//just log in console for catch
+done
+
+//usestate({
+  profileUSername
+})
