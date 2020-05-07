@@ -205,6 +205,63 @@ done
 //just log in console for catch
 done
 
-//usestate({
-  profileUSername
-})
+//Profile, move the list group to new comp
+//profilePosts , render to Profile
+//save and test
+
+// use state isLoading initial true
+//if else below,
+//if loading return a div ...
+
+
+//usestate the post , initnital; em[pty array
+//useeffect, 2nr arg empty
+//add fetchPosts
+//try, save to response get method
+//make params dynamic with useParams
+//log the response,  save and t est
+
+
+//set isloading to false
+//update the set posts
+
+//loop thru data, make it dynamic
+//for date create date var new date post/createDate
+//var for dateFormatted
+//save and test
+//change a href to Link, link to /post/dynamic id
+done
+
+//in viewSinglepost, set state isLoading true
+//post jut empty
+// if isloading is true title and div is ...
+//save and test
+
+//useeffecct, same with profileposts
+//change the url in axios useparamans of id
+//rename async func to singular
+
+//make the content dynamic
+//save and test
+
+//in Page  props of post.title  add dependecy props.title
+//save and test
+
+//make name in post dynamic and will go to /profile/username dynamic
+done
+
+//addd comp LoadingDotsIcon
+//return div class  dots-loading
+//add another inner div
+//in viesingpost , render icon in if
+//save and test,
+//do with profile post
+done
+
+// ** **  ,  * *  ### ,  - Red 
+//install react-markdown
+//in viewsinglepost, ReactMarkdown import
+//in body, reactmarkdown comp prop of source ={} post.body
+//save and test
+
+//add prop allowedTypes={[]}
