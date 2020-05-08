@@ -15,6 +15,7 @@ import FlashMessages from "./components/FlashMessages";
 import StateContext from "./StateContext";
 import DispatchContext from "./DispatchContext";
 import Profile from "./components/Profile";
+import EditPost from "./components/EditPost";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
@@ -24,8 +25,8 @@ const initialState = {
   user: {
     username: localStorage.getItem("complexappUsername"),
     token: localStorage.getItem("complexappToken"),
-    avatar: localStorage.getItem("complexappAvatar")
-  }
+    avatar: localStorage.getItem("complexappAvatar"),
+  },
 };
 const ourReducer = (draft, action) => {
   switch (action.type) {
@@ -65,9 +66,17 @@ function Main() {
 
           <Switch>
             <Route path="/profile/:username" component={Profile} />
-            <Route path="/" exact component={state.loggedIn ? Home : HomeGuest} />
-            <Route path="/create-post" render={props => <CreatePost {...props} />} />
-            <Route path="/post/:id" component={ViewSinglePost} />
+            <Route
+              path="/"
+              exact
+              component={state.loggedIn ? Home : HomeGuest}
+            />
+            <Route
+              path="/create-post"
+              render={(props) => <CreatePost {...props} />}
+            />
+            <Route path="/post/:id" exact component={ViewSinglePost} />
+            <Route path="/post/:id/edit" exact component={EditPost} />
             <Route path="/about-us" component={About} />
             <Route path="/terms" component={Terms} />
           </Switch>

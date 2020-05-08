@@ -49,7 +49,7 @@ function ProfilePosts() {
               className="list-group-item list-group-item-action"
             >
               <img className="avatar-tiny" src={post.author.avatar} />
-              <strong>{post.title}</strong>
+              <strong>{post.title}</strong>{" "}
               <span className="text-muted small">on {formattedDate} </span>
             </Link>
           );

@@ -265,3 +265,117 @@ done
 //save and test
 
 //add prop allowedTypes={[]}
+done
+
+//viewsinglepost, import ReactTooltip
+//delete icon i element, a tag. add attr
+//name data-tip - Edit 
+//data-for 'ediit'
+//below a tag, render tooltip id of edit, class of custom-tooltip
+//delete title save and delete
+//do with delete , save and test
+
+//add space betwwen icons
+done
+
+//new file EditPost,  test
+3
+//copy view single post
+//for jsx, copy from create post
+//adjust, title,  handlesub,it, onchange,
+//fill in the input and the body
+2
+//set up route below single post, /post:id/edit , give them exact
+//Link the edit icon
+
+4
+//change button Save Update
+
+//useImmerReducer ,ourReducer, originalState
+//in originalstate obj
+//titleobj, with value, hasErrors: false, message
+//body obj, same with title
+//loading initial of true
+//saveIsLoading false
+//sendCount 0
+
+//delete useState props
+//in useEffect, deletesetpost and setisloading
+//insteat, render dispatch type of fetchComplete, 
+//value of response.data
+
+//in ourRducer, draft, action, switch is on action type
+//case of fetchComplete, draft.title.value to action.value.title
+//same with body and loading
+//return
+
+//change loading to isFetching and isSaving
+
+//change id from axios
+//change isLoading to isFetching
+//delete date
+//change title, body
+//save and test
+done
+
+
+//edit post
+// add onChange to , titleChange value of the encoded . as dispatch
+//add this as a case, change the value prop of title
+//do this for body, bodyChange
+//return return
+
+//func submitHandler to form
+//prevent default
+//submitRequest casse
+//in here, increment the sendCount
+//return
+done
+
+//duplicate useeffect, paste below
+//sendCount as dependency
+//cut all inside useeffect and add this if statecount is true
+
+//post to /post/:id/edit, 2nd arg is an obj
+//title, body token props. fill this in
+//delete dispatch below and alert
+//save nad test
+
+//below if, add dispatch name saveRequestStarted isSaving true
+//delete alert and dispatch saveRequestFinished is saving false
+
+//add disabled to button conditionally
+//save and test slow connection test
+
+//import adppDispatcg and and type and value to display "Post was updated
+//save and test include /post/id test
+done
+
+//Editpost, below input div class alert alert-danger small liveValidateMessage
+//set example message
+//save and test
+// cut div, if haserrors && paste div
+//save and test
+
+//input onBLur dispatch name 'titleRules' value of -current value
+//add case, if value is !true .trim(),  hasErrors is true
+//message as 'you must provide a title'
+//pull the message prop from state
+//return save and test
+
+//in submitRequest case, cut increment and if statement
+//if title and body hasserrors is false
+//paste the increment
+//save and test
+
+//insubmitHandler, after prevent
+//dispatch the title rules and has value of title value
+//save and test
+
+//in body, set the onblur type of bodyRules and set the case
+//in submit handler also dispatch for the body
+//add the error div for the body and adjust
+//save and test
+
+//in title and body change set has errrors to false
+//save and test
