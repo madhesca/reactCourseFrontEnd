@@ -379,3 +379,224 @@ done
 
 //in title and body change set has errrors to false
 //save and test
+done
+
+//Edit post, before form, &laquo; add link  Back to post permalink
+//class of small font-weigght-bold
+// link to /post/id dynamic
+//form class mt-3
+//save and test
+done
+
+//add prop to state notFound as false
+//in first axios,  cut dispatch and add if else
+//if ders response, pastte dispatch
+//else create a type name notFound
+//add case set true to notFound
+//before isfetching,
+//if notfound is true, 
+// return addd a page comp, title Not Found a div class of text-center
+//h2 Whooops we cannot find that page
+//p class lead text-muted of You can always visit the homepage to get a fresh start
+//make homepage a link that redirects to homepage
+//save and test
+done
+
+//add comp name NotFound and transfer files here
+//apply this is view single post above isloading
+//render if loading is false and post s false
+//save  and test
+
+//add also this in route 
+//save and test
+
+editing url not yours
+//in Edit posts that loads
+//try below if dispatch
+//if current username is not the author username
+//flashMessage value of You do not have permission
+//Redirect with the use of withRouter props history push, change func name to EditPost
+//save and test
+done
+
+only display edit and delete icons to user
+//viewsinglepost, span that holds edit and delete
+//cut, make isOwner func. above return
+//if isowner is true paste the span
+
+//in isowner if, is loggedin is true
+//return current user  == post author username
+//outside id, return false
+//save and test
+
+show confirmation id delete is click
+// in delete icon add deleteHandler on on click
+//create deletehandler, add var areYouSure
+//that = window.confirm Do you really want to delete this post
+//below, if areyoesure is true alert
+//save and test
+
+//in try send axios delete, save to response var
+//1, /post/id, 2, send token
+//below if, appDispatch type flashMessaes,
+//value Post was successfully deleted
+
+//use the withRouter props to redirect to /profile/username dynamic
+//save and test
+done
+
+adding new comp for search overlay
+//name Search, return hello
+//above footer add search, save and test
+//github, html search is visible
+//starts at div search-overlay, before footer
+//change for, class autofocus autocomplete
+//save and test
+
+//add prop to initial state as isSearchOpen to false
+//add case openSearch, issearopen to true
+//do opposite to closeSearch
+
+//make search comp conditional i isSearopen is true
+//save and test
+
+response to clicking the search
+// in Headerloggedin,  a tag in search
+//add handleSearchIcon via onCLick, and create this
+
+//in this func prevent default
+//call the opensearch type
+
+//do this in close in the seatch comp
+//save and test
+
+close the icon via scape
+//In Search, add useeffect
+//listen to keyup event and run searchKeyPressHandler func
+//cleanup by removing
+//in the func, if e.keyCode = 27
+//close the search by appDispatch
+done
+
+//main, import as  CSSTransition destructure
+//in Search comp, cut, css comp, inside
+//give css prop name timeout 330 in state.isOpen
+//classnames 'search-overlay', unmountOnExit
+//save and test
+
+add tool tip
+//headerlogin, search icon below a elemet
+//render ReactToolTip comp
+// add props place'bottom id 'search classname 'custom-tooltip
+//in a tag data-for search data-tip 'Search
+//save and test
+
+//do with chat icon and profile
+
+horizontal spacing
+//search and chat
+//profile and chat
+//profile and create post 
+//create and sign out
+done
+
+//destructure useImmer
+//render use immer as state and setstate
+//with props searchTerm, results, show, requestCount
+//values of '', [], 'neither', 0
+//add onchange to input handleInput
+//in here, store as value the typed value
+//setstate param of draft function
+//searchtem is equals value
+
+//add userffect, searchterm as dependency and console log the searchterm
+//save and tes
+
+//in use effect, add var name delay = settimeput
+//evey 3000, log the searchterm
+//in cleanup, cancel the delay timeput
+//save and test
+
+//delete log and call setstate draft as arg
+//increment the requestCount
+
+//another ueeffect, equestcount as dependency
+//if reqstcount is true,
+
+//in database, posts, Indexes, create index
+//add title:  text
+//add body: text
+//review and confirm
+done
+
+//in use effect, create var ourRequest = Axios.CancelToken.source()
+//in cllean up call ourrequest.cancel()
+//below ourRequest add fetchResults func
+//in try, create var name response ax post with 3 args
+// /search url, 2 is searchTerm, 3 prop cancelToken: ourreq.token
+loga response
+//in catch error msg of There was a problem or the reqest was cancelled
+//save and test
+done
+
+
+//store resposnse to state results
+
+//in search overlay above --visible, add div
+//class of dynamic 'circle-loader' + 
+//if state show is  'loading, add 'circle-loader--visible'
+//else emppty ''
+//below div class, 'live-search-results ' +
+//if state show is 'results' add 'live-search-results--visible
+//else ''
+//save and test
+
+//cut all use effect content with delay
+//if there is searchterm .trim, pase conten
+//else set shoe to 'neither'
+//above const delay set show to 'loading
+//in usestate savinf t state, after saving to state,
+//set show to 'results
+//save and test
+done
+
+make count dynamic 
+//below, make number dynamic
+//make items conditional
+//save and test
+
+looping post results
+//DELETe all a tags
+//loop results, copy from Profile, starts from data to Link
+//include by author, dynamic
+//save and test
+
+remove search results after clicking author
+//in search Link, add onClick and call dispatch closeSearch
+//save and test
+
+add ID to view single post
+//SAVE and test
+
+
+no results
+//SEARCH, below live search results, cut div until {} 1 div
+//Boolean(state.res.len) && paste
+// below, opposit and render p tag class of
+//alert alert-danger text-center shadow-sm
+//Sorry we could not find any results for that search.
+//save and test
+
+//reduce the delay to 750
+
+
+
+
+
+
+
+
+
+
+
+
