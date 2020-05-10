@@ -36,9 +36,11 @@ function HeaderLoggedIn(props) {
         Create Post
       </Link>{" "}
       {"  "}
-      <button onClick={handleLogout} className="btn btn-sm btn-secondary">
-        Sign Out
-      </button>
+      <Link to="/">
+        <button onClick={handleLogout} className="btn btn-sm btn-secondary">
+          Sign Out
+        </button>
+      </Link>
     </div>
   );
 }

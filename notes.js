@@ -586,12 +586,148 @@ no results
 //alert alert-danger text-center shadow-sm
 //Sorry we could not find any results for that search.
 //save and test
-
 //reduce the delay to 750
+done
+
+change usestate to use immer
+//profile, import useImmer, copy obj fro usestate
+//use immer, state setstate
+//add profileData and paste
+//add followActionLoading false
+//startFollowingRequestCount 0
+//stopFollowingRequestCount 0
+//change setProfileData below to setstate, draft param
+//safe to profileData
+//change all profiledata below with state
+//save and test
+
+only display follow buttons
+//cut follow button below
+//only show button if is logged in,
+// u are not following 
+//and the user is not the author
+ //and profile username is not equal ....
+//save and test
+done
+
+
+clicking the follow
+//add onclick name startFollowing
+//disabled to followactionloading
+//in startfollowing, increment startfollowingreqcount ++
+//copy first useeffect
+//startfollcount as dependency
+//cut alll content, if startcount  is true, paste
+//adjust url to /addFollow/profileUSername dynamic
+//in setstate below, set profildata is fllo to true
+//and increment count followercount
+//below if in useeeffct set actionloading to true
+// set this to false below actionLoading
+//save and test
+done
 
 
 
+show unfollow button
+//copy, button below inc the condition,
+//paste and changes, stop following, ! ,
+// and danger, and i tag times
+//craeate stopFollowing on Click
+//copy func startfollowing above, change draft to stop
+//copt all useffect and paste
+//dependency is change to stop
+//change url to /removeFollow 
+//isFllowng false
+// -- to counts followeCOunt
+//action loading to false
+//change if to stopFolloww...
+//save and test
 
+profile glitches
+//PROFILE, 1st useeffect, add dependecy ro username
+//profilepost, add depen to username
+done
+
+//profile,  import NavLink, change a tag to Navlink
+//delete active class, change hrfe to to
+//for post /profile/username exact
+//copt  paste to other 2
+//for /profile/username/followers
+//for profile/username/following
+//delete profileposts comp
+//add switch and add routes to 3
+//exact on 1st
+//save and test
+
+followers comp
+//ProfileFollowers, copy profilepost and paste
+//change func name and export name
+//change url to followers
+//delete date
+
+// map params follower, index
+//change Link url ro /profile/folloers username
+//change img src to /followers avatar
+//deleteng strong and span
+//and input followers username
+//import and render in Profile
+//save and test
+
+following comp
+//ProfileFollowing, do samme with followers
+// import render,
+//save and test
+
+//assignment 1 comp as profileFollow
+// if no following , add, this user is not following anyone yet
+//in your profile, message if you have no followers
+done
+
+//in home, useImmer
+//set up state, obj of isLoading true, feed []
+//profile, copy useeffect /profile/username
+//copy paste, empty dependency
+//change url to getHomeFeed
+//set isloading to false
+//feed to response
+
+//in jsx, above return, if isloading is true
+//import LoadingDotsIcon
+//return this
+
+//cut h2, if feed has length = 0 && paste
+//wrap it in a fragment
+
+//above if feed > 0, reactFragment, 
+//h2 the latest from those you follow class text-center mb-4
+//div class of list-group
+//in search copy map and paste
+
+//change state to feed
+//delete onclick in Link
+//save and test
+
+reusable post componenet
+//new comp name Post
+//in home, from date to close, copy, and paste
+
+//in home, render the post with post props key of post _id
+//reciv props
+//save and test
+
+//in search, dlete from date to last and resnder post
+//props of post and _id onClick appdispatch closeSearcg
+//save and test
+
+//in profilepost/ delete and paste
+//props of post and _id
+
+//in ProfilePost, add prop to Post noAuthor as true
+//in Post, cut by username
+//id propa.noautor is false &&  paste
+//save and test
+
+//in Post, delet key in link
 
 
 
