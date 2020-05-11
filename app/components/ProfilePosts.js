@@ -19,7 +19,6 @@ function ProfilePosts() {
         });
         setIsLoading(false);
         setPosts(response.data);
-        console.log(response.data);
       } catch (ex) {
         console.log("Failed getting the posts");
       }
@@ -37,7 +36,7 @@ function ProfilePosts() {
     <div>
       <div className="list-group">
         {posts.map(post => {
-          return <Post noAuthor={true} post={post} id={post._id} />;
+          return <Post key={post._id} noAuthor={true} post={post} id={post._id} />;
         })}
       </div>
     </div>

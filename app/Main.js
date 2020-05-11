@@ -29,10 +29,11 @@ const initialState = {
   user: {
     username: localStorage.getItem("complexappUsername"),
     token: localStorage.getItem("complexappToken"),
-    avatar: localStorage.getItem("complexappAvatar"),
+    avatar: localStorage.getItem("complexappAvatar")
   },
   isSearchOpen: false,
   isChatOpen: false,
+  unreadChatCount: 0
 };
 const ourReducer = (draft, action) => {
   switch (action.type) {
@@ -57,6 +58,13 @@ const ourReducer = (draft, action) => {
       return;
     case "closeChat":
       draft.isChatOpen = false;
+      return;
+    case "incrementUnreadChatCount":
+      draft.unreadChatCount++;
+      return;
+    case "clearUnreadChatCount":
+      draft.unreadChatCount = 0;
+      return;
   }
 };
 
@@ -83,27 +91,15 @@ function Main() {
 
           <Switch>
             <Route path="/profile/:username" component={Profile} />
-            <Route
-              path="/"
-              exact
-              component={state.loggedIn ? Home : HomeGuest}
-            />
-            <Route
-              path="/create-post"
-              render={(props) => <CreatePost {...props} />}
-            />
+            <Route path="/" exact component={state.loggedIn ? Home : HomeGuest} />
+            <Route path="/create-post" render={props => <CreatePost {...props} />} />
             <Route path="/post/:id" exact component={ViewSinglePost} />
             <Route path="/post/:id/edit" exact component={EditPost} />
             <Route path="/about-us" component={About} />
             <Route path="/terms" component={Terms} />
             <Route component={NotFound} />
           </Switch>
-          <CSSTransition
-            timeout={330}
-            in={state.isSearchOpen}
-            classNames="search-overlay"
-            unmountOnExit
-          >
+          <CSSTransition timeout={330} in={state.isSearchOpen} classNames="search-overlay" unmountOnExit>
             <Search />
           </CSSTransition>
           <Chat />
