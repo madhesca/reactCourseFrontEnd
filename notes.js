@@ -728,11 +728,119 @@ reusable post componenet
 //save and test
 
 //in Post, delet key in link
+done
+
+setting up chat box
+//new comp name Chat, github chat is visible
+//from chat wrapper and beofre footer copy paste
+// classes, autocomplete
+//render in main above footer
+//save and test
+
+hide the box
+//main, add prop name isChatOpen false
+//in reducer, case toggleChat and toggle code return
+//case closeChat set chatOpen to false return
+
+//im chat all classes in chat  make it dynamic
+//chat warpper--visible cut this
+//if ischatopen is true, add class else  '' thrue appstate
+//save and test
+
+toggle the chat box
+//onclick on span chat in headerloggedin, type, toggle it
+//save and test
+
+closing useing X
+//in Chat onclick add type to close icon
+
+focus input field
+//CHAT useueffect,, dependency is apps ischatOpen
+//below input, add ref as prop name chatField
+// add var namae chatField = useref
+//call this in use effect to focus
+//save and test
+done
+
+alert the inputed text
+//chat js, useImmer, state, obj fieldValue
+//add onchange to input below name handleFieldChange
+//store to fieldvalue the input text
+
+//in form add onSubmit name handleSubmit
+//prevent default
+//alert the field value
+//save and test
+
+clear out the input field
+//value of the field value
+//in submithandle, set the fieldvalue to ''
+//save and test
 
 
+//add value to state as chatMessages []
+//in subbmit handler setstate, push to chatMessages the obj
+//props of message, username, avatar
+// in jsx, div chat below, loop chatmeessages
+//params message, index, below 
+//if, username fr message is equal to username appstate
+// return below div with chat-self class
+//delete hey how ar you and replace with dynamic message
+//img src to message avatar
+//save and test
 
+// below if , return the div chat other, 3 closing div
+done
 
+//install socket .io, import name io
+//add var name socket and call io to our servers path
+//in handlesubmit call socket emit with 2 args
+//1 chatFromBrowser, 2 is obj with message and token
 
+//add useeffect, no dependency
+//call socket on with 2 args
+//1 chatFromServer 2nd is func with message arg
+//inside, save this arg message to chatMessage
+//save and test
 
+//chat, chat other
+//make dynamic to image, username for barkalot, a tag message message
+//save and test
+done
 
+clicable avaar and name
+//CHAT OTHER change a tag to Link to /profile/username  dynamic
+//do this in its username
+//save and test
 
+//add key to chat self and chat other
+//save and test
+
+scrollbars
+//chat log give ref name chatLog 
+//create ref name chatLog
+//add useeffect dependency of chatMessages
+//call chatlog CURRENT scrollTop = ... scrollHeight
+//save and test
+
+unread message count
+//in main, add prop name unreadChatCount to 0
+//case incrementUnreadChatCount, increment
+//case clearUnreadChatCount = 0
+//chat useeffect that has scroll top
+//below chatlog, if chatmessage has length and isChatOpen is false
+//call dispatch type incrementunreadrchatCount
+
+//in useeffct that has focus
+//below focus, call dispatch type clearunredmessages
+
+//in headerloggen in chat icon, cut clas name with text white
+//make text-white dynamic
+//if unreadchatcount is true add text-danger, else text-white
+//save and test
+
+//in chat chat icon below i fa comment, cut span
+//if unreadchatcount is true, paste else ""
+//between span, if unreadchatcount is less than 10//
+//render chatcount, else '9+'
+//save and test

@@ -19,6 +19,7 @@ import EditPost from "./components/EditPost";
 import NotFound from "./components/NotFound";
 import Search from "./components/Search";
 import { CSSTransition } from "react-transition-group";
+import Chat from "./components/Chat";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
@@ -28,9 +29,10 @@ const initialState = {
   user: {
     username: localStorage.getItem("complexappUsername"),
     token: localStorage.getItem("complexappToken"),
-    avatar: localStorage.getItem("complexappAvatar")
+    avatar: localStorage.getItem("complexappAvatar"),
   },
-  isSearchOpen: false
+  isSearchOpen: false,
+  isChatOpen: false,
 };
 const ourReducer = (draft, action) => {
   switch (action.type) {
@@ -50,6 +52,11 @@ const ourReducer = (draft, action) => {
     case "closeSearch":
       draft.isSearchOpen = false;
       return;
+    case "toggleChat":
+      draft.isChatOpen = !draft.isChatOpen;
+      return;
+    case "closeChat":
+      draft.isChatOpen = false;
   }
 };
 
@@ -76,17 +83,30 @@ function Main() {
 
           <Switch>
             <Route path="/profile/:username" component={Profile} />
-            <Route path="/" exact component={state.loggedIn ? Home : HomeGuest} />
-            <Route path="/create-post" render={props => <CreatePost {...props} />} />
+            <Route
+              path="/"
+              exact
+              component={state.loggedIn ? Home : HomeGuest}
+            />
+            <Route
+              path="/create-post"
+              render={(props) => <CreatePost {...props} />}
+            />
             <Route path="/post/:id" exact component={ViewSinglePost} />
             <Route path="/post/:id/edit" exact component={EditPost} />
             <Route path="/about-us" component={About} />
             <Route path="/terms" component={Terms} />
             <Route component={NotFound} />
           </Switch>
-          <CSSTransition timeout={330} in={state.isSearchOpen} classNames="search-overlay" unmountOnExit>
+          <CSSTransition
+            timeout={330}
+            in={state.isSearchOpen}
+            classNames="search-overlay"
+            unmountOnExit
+          >
             <Search />
           </CSSTransition>
+          <Chat />
           <Footer />
         </BrowserRouter>
       </DispatchContext.Provider>
