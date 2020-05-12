@@ -858,3 +858,24 @@ done
 //do this for email nd password
 
 //userImm...
+done
+
+//headerlogout, type, flashmes 'You are now logged in'
+//delete, Invalid username/password
+//save and test
+
+//headerlog it, haddle logout , you have succesfully logged out
+done
+
+
+//main js
+//search, copy useeffect,  /search
+//before return, //check token, paste
+//empty depen, if state  login
+//url /checkToken, prop token, user token
+//delete setstate
+//if response data is false
+//log user outm dispatch log out
+//flash message Your session token has expired. Please log in again.
+//save and test
+

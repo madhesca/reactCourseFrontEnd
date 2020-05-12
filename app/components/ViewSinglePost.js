@@ -50,7 +50,7 @@ function ViewSinglePost(props) {
 
   const date = new Date(post.createdDate);
 
-  const formattedDate = `${date.getMonth() + 1} / ${date.getDate()}/ ${date.getFullYear()}`;
+  const formattedDate = `${date.getMonth() + 1} / ${date.getDate()} / ${date.getFullYear()}`;
 
   function isOwner() {
     if (appState.loggedIn) {
@@ -100,8 +100,7 @@ function ViewSinglePost(props) {
         <Link to={`/profile/${post.author.username}/post`}>
           <img className="avatar-tiny" src={post.author.avatar} />
         </Link>
-        Posted by <Link to={`/profile/${post.author.username}`}>{post.author.username}</Link> on
-        {formattedDate}
+        Posted by <Link to={`/profile/${post.author.username}`}>{post.author.username} </Link> {"on "} {formattedDate}
       </p>
 
       <div className="body-content">

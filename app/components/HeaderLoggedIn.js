@@ -10,6 +10,7 @@ function HeaderLoggedIn(props) {
 
   function handleLogout() {
     appDispatch({ type: "logout" });
+    appDispatch({ type: "flashMessages", value: "You are now logged out." });
   }
 
   function handleClick(e) {

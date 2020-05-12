@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, Suspense } from "react";
 import { useImmerReducer } from "use-immer";
 import ReactDOM from "react-dom";
 import Header from "./components/Header";
@@ -8,18 +8,19 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 import Terms from "./components/Terms";
 import Home from "./components/Home";
-import CreatePost from "./components/CreatePost";
+const CreatePost = React.lazy(() => import("./components/CreatePost"));
 import Axios from "axios";
-import ViewSinglePost from "./components/ViewSinglePost";
+const ViewSinglePost = React.lazy(() => import("./components/ViewSinglePost"));
 import FlashMessages from "./components/FlashMessages";
 import StateContext from "./StateContext";
 import DispatchContext from "./DispatchContext";
 import Profile from "./components/Profile";
 import EditPost from "./components/EditPost";
 import NotFound from "./components/NotFound";
-import Search from "./components/Search";
 import { CSSTransition } from "react-transition-group";
-import Chat from "./components/Chat";
+const Search = React.lazy(() => import("./components/Search"));
+const Chat = React.lazy(() => import("./components/Chat"));
+import LoadingDotsIcon from "./components/LoadingDotsIcon";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
@@ -82,27 +83,53 @@ function Main() {
     }
   }, [state.loggedIn]);
 
+  useEffect(() => {
+    if (state.loggedIn) {
+      const ourRequest = Axios.CancelToken.source();
+
+      async function fetchResults() {
+        try {
+          const response = await Axios.post("/checkToken", { token: state.user.token }, { cancelToken: ourRequest.token });
+
+          if (!response.data) {
+            dispatch({ type: "logout" });
+            dispatch({ type: "flashMessages", value: "Your session token has expired. Please log in again." });
+          }
+        } catch (ex) {
+          console.log("There was something wrong or the request is cancelled");
+        }
+      }
+      fetchResults();
+      return () => ourRequest.cancel();
+    }
+  }, []);
+
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
           <FlashMessages messages={state.flashMessages} />
           <Header />
-
-          <Switch>
-            <Route path="/profile/:username" component={Profile} />
-            <Route path="/" exact component={state.loggedIn ? Home : HomeGuest} />
-            <Route path="/create-post" render={props => <CreatePost {...props} />} />
-            <Route path="/post/:id" exact component={ViewSinglePost} />
-            <Route path="/post/:id/edit" exact component={EditPost} />
-            <Route path="/about-us" component={About} />
-            <Route path="/terms" component={Terms} />
-            <Route component={NotFound} />
-          </Switch>
+          <Suspense fallback={<LoadingDotsIcon />}>
+            <Switch>
+              <Route path="/profile/:username" component={Profile} />
+              <Route path="/" exact component={state.loggedIn ? Home : HomeGuest} />
+              <Route path="/create-post" render={props => <CreatePost {...props} />} />
+              <Route path="/post/:id" exact component={ViewSinglePost} />
+              <Route path="/post/:id/edit" exact component={EditPost} />
+              <Route path="/about-us" component={About} />
+              <Route path="/terms" component={Terms} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
           <CSSTransition timeout={330} in={state.isSearchOpen} classNames="search-overlay" unmountOnExit>
-            <Search />
+            <div className="search-overlay">
+              <Suspense fallback="">
+                <Search />
+              </Suspense>
+            </div>
           </CSSTransition>
-          <Chat />
+          <Suspense fallback="">{state.loggedIn && <Chat />}</Suspense>
           <Footer />
         </BrowserRouter>
       </DispatchContext.Provider>
