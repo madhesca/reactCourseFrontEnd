@@ -846,4 +846,15 @@ unread message count
 //save and test
 done
 
-//
+//home guest, delete 3 usestate, delete inside handle submit
+//no async useImmerReducer , inistialStae of username, email, password, submitCount
+//has props of value, hasErrors, message,isUnique, checkCount
+//set up ourReducer, cases
+//usernameImmediately, usernameAfterDelay, do email password
+//usernameUniqueResults do email
+//submitForm
+
+//in username input, add onchange, dispatch type immediately, and value
+//do this for email nd password
+
+//userImm...
