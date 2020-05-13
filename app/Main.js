@@ -22,7 +22,8 @@ const Search = React.lazy(() => import("./components/Search"));
 const Chat = React.lazy(() => import("./components/Chat"));
 import LoadingDotsIcon from "./components/LoadingDotsIcon";
 
-Axios.defaults.baseURL = "http://localhost:8080";
+Axios.defaults.baseURL =
+  process.env.BACKENDURL || "https://martonbackendforreactapp.herokuapp.com";
 
 const initialState = {
   loggedIn: Boolean(localStorage.getItem("complexappToken")),
@@ -30,11 +31,11 @@ const initialState = {
   user: {
     username: localStorage.getItem("complexappUsername"),
     token: localStorage.getItem("complexappToken"),
-    avatar: localStorage.getItem("complexappAvatar")
+    avatar: localStorage.getItem("complexappAvatar"),
   },
   isSearchOpen: false,
   isChatOpen: false,
-  unreadChatCount: 0
+  unreadChatCount: 0,
 };
 const ourReducer = (draft, action) => {
   switch (action.type) {
@@ -89,11 +90,18 @@ function Main() {
 
       async function fetchResults() {
         try {
-          const response = await Axios.post("/checkToken", { token: state.user.token }, { cancelToken: ourRequest.token });
+          const response = await Axios.post(
+            "/checkToken",
+            { token: state.user.token },
+            { cancelToken: ourRequest.token }
+          );
 
           if (!response.data) {
             dispatch({ type: "logout" });
-            dispatch({ type: "flashMessages", value: "Your session token has expired. Please log in again." });
+            dispatch({
+              type: "flashMessages",
+              value: "Your session token has expired. Please log in again.",
+            });
           }
         } catch (ex) {
           console.log("There was something wrong or the request is cancelled");
@@ -113,8 +121,15 @@ function Main() {
           <Suspense fallback={<LoadingDotsIcon />}>
             <Switch>
               <Route path="/profile/:username" component={Profile} />
-              <Route path="/" exact component={state.loggedIn ? Home : HomeGuest} />
-              <Route path="/create-post" render={props => <CreatePost {...props} />} />
+              <Route
+                path="/"
+                exact
+                component={state.loggedIn ? Home : HomeGuest}
+              />
+              <Route
+                path="/create-post"
+                render={(props) => <CreatePost {...props} />}
+              />
               <Route path="/post/:id" exact component={ViewSinglePost} />
               <Route path="/post/:id/edit" exact component={EditPost} />
               <Route path="/about-us" component={About} />
@@ -122,7 +137,12 @@ function Main() {
               <Route component={NotFound} />
             </Switch>
           </Suspense>
-          <CSSTransition timeout={330} in={state.isSearchOpen} classNames="search-overlay" unmountOnExit>
+          <CSSTransition
+            timeout={330}
+            in={state.isSearchOpen}
+            classNames="search-overlay"
+            unmountOnExit
+          >
             <div className="search-overlay">
               <Suspense fallback="">
                 <Search />

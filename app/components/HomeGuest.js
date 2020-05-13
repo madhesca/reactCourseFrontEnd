@@ -13,21 +13,21 @@ function HomeGuest() {
       hasErrors: false,
       message: "",
       isUnique: true,
-      checkCount: 0
+      checkCount: 0,
     },
     email: {
       value: "",
       hasErrors: false,
       message: "",
       isUnique: true,
-      checkCount: 0
+      checkCount: 0,
     },
     password: {
       value: "",
       hasErrors: false,
-      message: ""
+      message: "",
     },
-    submitCount: 0
+    submitCount: 0,
   };
 
   function ourReducer(draft, action) {
@@ -38,12 +38,17 @@ function HomeGuest() {
 
         if (draft.username.value.length > 30) {
           draft.username.hasErrors = true;
-          draft.username.message = "Username should not exceed 30 characters long";
+          draft.username.message =
+            "Username should not exceed 30 characters long";
         }
 
-        if (draft.username.value && !/^([a-zA-z0-9]+)$/.test(draft.username.value)) {
+        if (
+          draft.username.value &&
+          !/^([a-zA-z0-9]+)$/.test(draft.username.value)
+        ) {
           draft.username.hasErrors = true;
-          draft.username.message = "Username can only containe numbers and letters";
+          draft.username.message =
+            "Username can only containe numbers and letters";
         }
 
         return;
@@ -78,16 +83,16 @@ function HomeGuest() {
       case "passwordImmediately":
         draft.password.hasErrors = false;
         draft.password.value = action.value;
-        if (draft.password.value.length > 15) {
+        if (draft.password.value.length > 50) {
           draft.password.hasErrors = true;
-          draft.password.message = "Password cannot exceed 15 characters long";
+          draft.password.message = "Password cannot exceed 50 characters long";
         }
 
         return;
       case "passwordAfterDelay":
-        if (draft.password.value.length < 5) {
+        if (draft.password.value.length < 12) {
           draft.password.hasErrors = true;
-          draft.password.message = "Password should atleast 5 characters long";
+          draft.password.message = "Password should atleast 12 characters long";
         }
         return;
       case "usernameUniqueResults":
@@ -111,7 +116,13 @@ function HomeGuest() {
 
         return;
       case "submitForm":
-        if (!draft.username.hasErrors && draft.username.isUnique && !draft.email.hasErrors && draft.email.isUnique && !draft.password.hasErrors) {
+        if (
+          !draft.username.hasErrors &&
+          draft.username.isUnique &&
+          !draft.email.hasErrors &&
+          draft.email.isUnique &&
+          !draft.password.hasErrors
+        ) {
           draft.submitCount++;
         }
 
@@ -154,7 +165,11 @@ function HomeGuest() {
 
       async function fetchResults() {
         try {
-          const response = await Axios.post("/doesUsernameExist", { username: state.username.value }, { cancelToken: ourRequest.token });
+          const response = await Axios.post(
+            "/doesUsernameExist",
+            { username: state.username.value },
+            { cancelToken: ourRequest.token }
+          );
 
           dispatch({ type: "usernameUniqueResults", value: response.data });
         } catch (ex) {
@@ -172,7 +187,11 @@ function HomeGuest() {
 
       async function fetchResults() {
         try {
-          const response = await Axios.post("/doesEmailExist", { email: state.email.value }, { cancelToken: ourRequest.token });
+          const response = await Axios.post(
+            "/doesEmailExist",
+            { email: state.email.value },
+            { cancelToken: ourRequest.token }
+          );
 
           dispatch({ type: "emailUniqueResults", value: response.data });
         } catch (ex) {
@@ -195,7 +214,7 @@ function HomeGuest() {
             {
               username: state.username.value,
               email: state.email.value,
-              password: state.password.value
+              password: state.password.value,
             },
             { cancelToken: ourRequest.token }
           );
@@ -203,7 +222,7 @@ function HomeGuest() {
           appDispatch({ type: "login", data: response.data });
           appDispatch({
             type: "flashMessages",
-            value: "Congrats! You are now logged in!"
+            value: "Congrats! You are now logged in!",
           });
         } catch (ex) {
           console.log("There was something wrong or the request is cancelled");
@@ -220,13 +239,13 @@ function HomeGuest() {
     dispatch({
       type: "usernameAfterDelay",
       value: state.username.value,
-      noRequest: true
+      noRequest: true,
     });
     dispatch({ type: "emailImmediately", value: state.email.value });
     dispatch({
       type: "emailAfterDelay",
       value: state.email.value,
-      noRequest: true
+      noRequest: true,
     });
     dispatch({ type: "passwordImmediately", value: state.password.value });
     dispatch({ type: "passwordAfterDelay", value: state.password.value });
@@ -238,7 +257,12 @@ function HomeGuest() {
       <div className="row align-items-center">
         <div className="col-lg-7 py-3 py-md-5">
           <h1 className="display-3">Remember Writing?</h1>
-          <p className="lead text-muted">Are you sick of short tweets and impersonal &ldquo;shared&rdquo; posts that are reminiscent of the late 90&rsquo;s email forwards? We believe getting back to actually writing is the key to enjoying the internet again.</p>
+          <p className="lead text-muted">
+            Are you sick of short tweets and impersonal &ldquo;shared&rdquo;
+            posts that are reminiscent of the late 90&rsquo;s email forwards? We
+            believe getting back to actually writing is the key to enjoying the
+            internet again.
+          </p>
         </div>
         <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
           <form onSubmit={handleSubmit}>
@@ -247,10 +271,10 @@ function HomeGuest() {
                 <small>Username</small>
               </label>
               <input
-                onChange={e =>
+                onChange={(e) =>
                   dispatch({
                     type: "usernameImmediately",
-                    value: e.target.value
+                    value: e.target.value,
                   })
                 }
                 id="username-register"
@@ -260,17 +284,41 @@ function HomeGuest() {
                 placeholder="Pick a username"
                 autoComplete="off"
               />
-              <CSSTransition in={state.username.hasErrors} timeout={330} classNames="liveValidateMessage" unmountOnExit>
-                <div className="alert alert-danger small liveValidateMessage">{state.username.message}</div>
+              <CSSTransition
+                in={state.username.hasErrors}
+                timeout={330}
+                classNames="liveValidateMessage"
+                unmountOnExit
+              >
+                <div className="alert alert-danger small liveValidateMessage">
+                  {state.username.message}
+                </div>
               </CSSTransition>
             </div>
             <div className="form-group">
               <label htmlFor="email-register" className="text-muted mb-1">
                 <small>Email</small>
               </label>
-              <input onChange={e => dispatch({ type: "emailImmediately", value: e.target.value })} id="email-register" name="email" className="form-control" type="text" placeholder="you@example.com" autoComplete="off" />
-              <CSSTransition in={state.email.hasErrors} timeout={330} classNames="liveValidateMessage" unmountOnExit>
-                <div className="alert alert-danger small liveValidateMessage">{state.email.message}</div>
+              <input
+                onChange={(e) =>
+                  dispatch({ type: "emailImmediately", value: e.target.value })
+                }
+                id="email-register"
+                name="email"
+                className="form-control"
+                type="text"
+                placeholder="you@example.com"
+                autoComplete="off"
+              />
+              <CSSTransition
+                in={state.email.hasErrors}
+                timeout={330}
+                classNames="liveValidateMessage"
+                unmountOnExit
+              >
+                <div className="alert alert-danger small liveValidateMessage">
+                  {state.email.message}
+                </div>
               </CSSTransition>
             </div>
             <div className="form-group">
@@ -278,10 +326,10 @@ function HomeGuest() {
                 <small>Password</small>
               </label>
               <input
-                onChange={e =>
+                onChange={(e) =>
                   dispatch({
                     type: "passwordImmediately",
-                    value: e.target.value
+                    value: e.target.value,
                   })
                 }
                 id="password-register"
@@ -290,11 +338,21 @@ function HomeGuest() {
                 type="password"
                 placeholder="Create a password"
               />
-              <CSSTransition in={state.password.hasErrors} timeout={330} classNames="liveValidateMessage" unmountOnExit>
-                <div className="alert alert-danger small liveValidateMessage">{state.password.message}</div>
+              <CSSTransition
+                in={state.password.hasErrors}
+                timeout={330}
+                classNames="liveValidateMessage"
+                unmountOnExit
+              >
+                <div className="alert alert-danger small liveValidateMessage">
+                  {state.password.message}
+                </div>
               </CSSTransition>
             </div>
-            <button type="submit" className="py-3 mt-4 btn btn-lg btn-success btn-block">
+            <button
+              type="submit"
+              className="py-3 mt-4 btn btn-lg btn-success btn-block"
+            >
               Sign up for ComplexApp
             </button>
           </form>

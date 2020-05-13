@@ -13,7 +13,7 @@ function Chat() {
   const chatLog = useRef(null);
   const [state, setState] = useImmer({
     fieldValue: "",
-    chatMessages: []
+    chatMessages: [],
   });
 
   useEffect(() => {
@@ -24,9 +24,11 @@ function Chat() {
   }, [appState.isChatOpen]);
 
   useEffect(() => {
-    socket.current = io("http://localhost:8080");
-    socket.current.on("chatFromServer", message => {
-      setState(draft => {
+    socket.current = io(
+      process.env.BACKENDURL || "https://martonbackendforreactapp.herokuapp.com"
+    );
+    socket.current.on("chatFromServer", (message) => {
+      setState((draft) => {
         draft.chatMessages.push(message);
       });
     });
@@ -35,7 +37,7 @@ function Chat() {
 
   function handleFieldChange(e) {
     const value = e.target.value;
-    setState(draft => {
+    setState((draft) => {
       draft.fieldValue = value;
     });
   }
@@ -54,15 +56,15 @@ function Chat() {
 
     socket.current.emit("chatFromBrowser", {
       message: state.fieldValue,
-      token: appState.user.token
+      token: appState.user.token,
     });
 
     //store input to chatMessage []
-    setState(draft => {
+    setState((draft) => {
       draft.chatMessages.push({
         message: draft.fieldValue,
         username: appState.user.username,
-        avatar: appState.user.avatar
+        avatar: appState.user.avatar,
       });
 
       draft.fieldValue = "";
@@ -70,10 +72,19 @@ function Chat() {
   }
 
   return (
-    <div id="chat-wrapper" className={"chat-wrapper shadow border-top border-left border-right " + (appState.isChatOpen ? "chat-wrapper--is-visible" : "")}>
+    <div
+      id="chat-wrapper"
+      className={
+        "chat-wrapper shadow border-top border-left border-right " +
+        (appState.isChatOpen ? "chat-wrapper--is-visible" : "")
+      }
+    >
       <div className="chat-title-bar bg-primary">
         Chat
-        <span onClick={() => appDispatch({ type: "closeChat" })} className="chat-title-bar-close">
+        <span
+          onClick={() => appDispatch({ type: "closeChat" })}
+          className="chat-title-bar-close"
+        >
           <i className="fas fa-times-circle"></i>
         </span>
       </div>
@@ -108,8 +119,21 @@ function Chat() {
           );
         })}
       </div>
-      <form onSubmit={handleSubmit} id="chatForm" className="chat-form border-top">
-        <input value={state.fieldValue} onChange={handleFieldChange} ref={chatField} type="text" className="chat-field" id="chatField" placeholder="Type a message…" autoComplete="off" />
+      <form
+        onSubmit={handleSubmit}
+        id="chatForm"
+        className="chat-form border-top"
+      >
+        <input
+          value={state.fieldValue}
+          onChange={handleFieldChange}
+          ref={chatField}
+          type="text"
+          className="chat-field"
+          id="chatField"
+          placeholder="Type a message…"
+          autoComplete="off"
+        />
       </form>
     </div>
   );
